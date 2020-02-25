@@ -15,7 +15,9 @@
             L          50
             C          100
             D          500
-            M          1,000 
+            M          1,000
+
+
     
     2. Complete the method/function so that it converts dash/underscore delimited words into camel casing. The first word within the output should be capitalized only if the original word was capitalized (known as Upper Camel Case, also often referred to as Pascal case).
         Examples:
@@ -31,3 +33,73 @@
             filter_list([1,'a','b',0,15]) == [1,0,15]
             filter_list([1,2,'aasf','1','123',123]) == [1,2,123]
 */
+
+obj = { I : 1,  V : 5, X : 10, L : 50, C : 100, D :500, M : 1000 }
+function roman(arg){
+    var numeric = 0
+    var arr = arg.split('');
+    console.log(arr)
+    for(var i = 0; i < arr.length; i++){
+       for(var key in obj){
+         if(arr[i] === key){
+
+           numeric += obj[key]
+         }
+
+       }
+    }
+
+return numeric;
+}
+
+
+function toCamelCase(str){
+    var test = true;
+    var output = "";
+    var arr = str.split('_');
+    if(arr.length === 1){
+      arr = str.split('-')
+    }
+     for (var i = 1; i < arr.length; i++){
+       if(arr[i][0] !== arr[i][0].toUpperCase()){
+         test = false
+         break
+        }
+      }
+
+     if( test === true){
+       for (var i = 0; i < arr.length; i++){
+      output += arr[i][0].toUpperCase() + arr[i].slice(1)
+       }
+     }
+     else{
+       for (var i = 0; i < arr.length; i++){
+          output += arr[i];
+        }
+     }
+return output
+
+}
+
+function filter_list(array){
+    var result = [];
+    for(var i = 0; i < array.length; i++){
+      if(array[i] < 0){
+      return(alert('the integers needs to be positive'));
+
+      }
+      else{
+        if(typeof(array[i]) === 'number'){
+          result.push(array[i]);
+        }
+
+      }
+
+    }
+return result;
+
+}
+
+
+
+
