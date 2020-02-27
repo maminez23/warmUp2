@@ -19,5 +19,27 @@ Explanation: In this case, no transaction is done, i.e. max profit = 0.
 */
 
 var maxProfit = function(prices) {
-  // YOUR CODE HERE
+  var result =[];
+  var inside = [];
+  for (var i = 0; i < prices.length - 1; i++){
+    for(var j = i+1; j < prices.length; j++){
+      var diff = prices[j] - prices[i];
+      inside.push([diff, i, j])  ;
+    }
+    result.push(inside);
+  }
+  var arr = result.flat();
+
+  var max = arr[0]
+  for(var k = 1; k< arr.length; k++){
+    if(arr[k][0] > max[0] && arr[k][0] > 0){
+       max = arr[k]
+
+    }
+  }
+  if(max[0] > 0){
+    return "you can make " + max[0] + "profit by buying on day " + (max[1] + 1) + "and selling on day " + (max[2] + 1)
+  }
+return "max profit = 0"
 };
+
